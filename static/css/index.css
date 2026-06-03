@@ -1,0 +1,254 @@
+body {
+  font-family: 'DM Sans', 'Noto Sans', system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+}
+
+pre,
+code,
+kbd,
+samp {
+  font-family: 'DM Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+}
+
+
+.footer .icon-link {
+  font-size: 25px;
+  color: #ff6937;
+}
+
+.action-item a {
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+.dnerf {
+  font-variant: small-caps;
+}
+
+
+.lead-banner .hero-body {
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+/* Reduce extra space below masthead hero */
+.masthead-hero .hero-body {
+  padding-bottom: 1.5rem;
+  /* Bulma default section spacing feel */
+}
+
+.lead-banner {
+  font-family: 'DM Sans', 'Noto Sans', system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+}
+
+
+.project-title {}
+
+.section {
+  padding: 1.0rem;
+}
+
+.media-strip {
+  max-height: parent;
+
+}
+
+.media-strip video {
+  position: relative;
+  left: auto;
+  top: auto;
+  transform: none;
+  object-fit: fit;
+}
+
+.byline {}
+
+.headline {
+  font-family: 'DM Sans', 'Noto Sans', system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+}
+
+.byline {
+  font-family: 'DM Sans', 'Noto Sans', system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+}
+
+.venue-label {
+  color: #555;
+  width: fit-content;
+  font-weight: bold;
+}
+
+.highlight-badge {
+  color: #ff3860;
+  width: fit-content;
+  font-weight: bolder;
+}
+
+.byline {}
+
+.byline a {
+  color: #ff6937 !important;
+}
+
+.byline a:hover {
+  text-decoration: underline;
+}
+
+.byline-item {
+  display: inline-block;
+}
+
+.media-strip img {}
+
+.publication-authors {
+  /*color: #4286f4;*/
+}
+
+.video-frame {
+  position: relative;
+  width: 100%;
+  height: 0;
+  padding-bottom: 56.25%;
+
+  overflow: hidden;
+  border-radius: 10px !important;
+}
+
+.video-frame iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.article-body img {}
+
+.result-gallery {
+  overflow: hidden;
+}
+
+.result-gallery .item {
+  margin: 5px;
+  overflow: hidden;
+  border: 1px solid #bbb;
+  border-radius: 10px;
+  padding: 0;
+  font-size: 0;
+}
+
+.result-gallery video {
+  margin: 0;
+}
+
+
+.morph-panel {
+  background: #f5f5f5;
+  border-radius: 10px;
+}
+
+.morph-panel .preview-image {
+  width: 100%;
+  border-radius: 5px;
+}
+
+.morph-video-col {}
+
+.morph-panel .slider {
+  margin: 0 !important;
+}
+
+.morph-panel .slider {
+  margin: 0 !important;
+}
+
+#morph-image-wrapper {
+  width: 100%;
+}
+
+#morph-image-wrapper img {
+  border-radius: 5px;
+}
+
+/* Abstract background card */
+.summary-card {
+  background-color: #ffd5c4;
+  border-radius: 12px;
+  padding: 1.25rem;
+}
+
+/* Global link color */
+a {
+  color: #ff6937;
+}
+
+a:visited {
+  color: #ff6937;
+}
+
+/* TODO highlight */
+.todo {
+  color: #ff1744;
+  font-weight: 700;
+}
+
+/* Citation block wrapper so we can position the button */
+.citation-box {
+  position: relative;
+}
+
+/* Make space so the button doesn't overlap the first line */
+.citation-box pre {
+  padding-top: 2.5rem;
+  /* adjust as needed */
+}
+
+/* Copy button in the top-right of the citation box */
+.copy-btn {
+  position: absolute;
+  top: 0.75rem;
+  right: 0.75rem;
+  z-index: 2;
+
+  border: none;
+  cursor: pointer;
+
+  /* feel free to tweak styling to match your site */
+  background: rgba(0, 0, 0, 0.15);
+  color: inherit;
+  border-radius: 8px;
+  padding: 0.45rem 0.6rem;
+  line-height: 1;
+}
+
+.copy-btn:hover {
+  background: rgba(0, 0, 0, 0.25);
+}
+
+/* Acceptance styling */
+.acceptance-badge {
+  display: flex;
+  justify-content: center;
+  margin-top: 0.75rem;
+  margin-bottom: 0.75rem;
+}
+
+.acceptance-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+
+  font-family: "DM Sans", sans-serif;
+  font-weight: 600;
+  font-size: 1.6rem;
+
+  padding: 0.35rem 0.75rem;
+  border-radius: 999px;
+
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  background: rgba(255, 255, 255, 0.08);
+  color: inherit;
+  backdrop-filter: blur(6px);
+}
+
+.acceptance-pill i {
+  font-size: 0.95rem;
+}

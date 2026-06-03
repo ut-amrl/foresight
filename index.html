@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="description" content="FORESIGHT: Iterative plan-critique refinement for open-world mapless navigation.">
+  <meta name="keywords"
+    content="vision-language models, robot navigation, test-time reasoning, reinforcement learning from human feedback, motion planning">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>FORESIGHT: Iterative Plan-Critique Refinement for Open-World Mapless Navigation</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono&family=DM+Sans:wght@400;500;700&display=swap"
+    rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+  <!-- <link rel="icon" href="./static/images/favicon.svg"> -->
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+</head>
+
+<script>
+  function fallbackCopyTextToClipboard(text) {
+    const ta = document.createElement("textarea");
+    ta.value = text;
+    ta.setAttribute("readonly", "");
+    ta.style.position = "fixed";
+    ta.style.top = "-9999px";
+    document.body.appendChild(ta);
+    ta.select();
+    try {
+      document.execCommand("copy");
+    } finally {
+      document.body.removeChild(ta);
+    }
+  }
+
+  async function copyBibtex() {
+    const el = document.getElementById("bibtexBlock");
+    const btn = document.getElementById("copyBibtexBtn");
+    const text = el ? el.innerText.trim() : "";
+
+    try {
+      if (navigator.clipboard && window.isSecureContext) {
+        await navigator.clipboard.writeText(text);
+      } else {
+        fallbackCopyTextToClipboard(text);
+      }
+
+      // Optional: quick visual feedback
+      const icon = btn.querySelector("i");
+      const oldClass = icon.className;
+      icon.className = "fas fa-check";
+      setTimeout(() => (icon.className = oldClass), 900);
+    } catch (e) {
+      console.error("Copy failed:", e);
+    }
+  }
+
+  document.addEventListener("DOMContentLoaded", () => {
+    const btn = document.getElementById("copyBibtexBtn");
+    if (btn) btn.addEventListener("click", copyBibtex);
+  });
+</script>
+
+<body>
+
+  <section class="hero masthead-hero">
+    <div class="hero-body">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered">
+          <div class="column has-text-centered masthead">
+            <h1 class="title is-1 headline" style="margin-bottom: 0.0rem;">Foresight: Iterative Reasoning About Clues
+              that Matter for Navigation</h1>
+
+            <div class="is-size-5 byline">
+              <span class="byline-item">Anonymous Authors</span>
+            </div>
+
+            <div class="column has-text-centered">
+              <div class="action-bar">
+                <!-- Paper (PDF) -->
+                <span class="action-item">
+                  <a href="#" class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon"><i class="fas fa-file-pdf"></i></span>
+                    <span>Paper (Coming Soon)</span>
+                  </a>
+                </span>
+                <!-- Video -->
+                <span class="action-item">
+                  <a href="#video" class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon"><i class="fas fa-video"></i></span>
+                    <span>Video (Coming Soon)</span>
+                  </a>
+                </span>
+                <!-- Code -->
+                <span class="action-item">
+                  <a href="#" class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon"><i class="fab fa-github"></i></span>
+                    <span>Code (Coming Soon)</span>
+                  </a>
+                </span>
+              </div>
+            </div>
+
+            <video autoplay muted playsinline controls loop preload="auto" style="width: 100%; border-radius: 10px;">
+              <source src="./static/videos/websitemainfigure.mp4?v=1" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
+            <p class="subtitle is-5" style="margin-top: 0.0rem;">
+              Foresight iteratively proposes and critiques image-space motion plans with a finetuned Vision-Language
+              Model, refining navigation behavior at test time to follow sparse language instructions in open-world
+              environments.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Abstract -->
+  <section class="section">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column is-10">
+          <div class="summary-card">
+            <h2 class="title is-3">Abstract</h2>
+            <div class="content has-text-justified">
+              <p>
+                Open-world mapless navigation from sparse language instructions requires resolving underspecified
+                goals and inferring which environmental cues are relevant for reaching the goal&mdash;e.g.,
+                interpreting ramps, signs, or detours that reveal where to go or which route to take. Prior works
+                rely on closed-set factor categories or identify cues before motion planning, missing
+                plan-dependent cues. We argue that pretrained Vision-Language Models (VLMs) can discover novel
+                instruction-relevant cues, but require adaptation to focus on which cues matter and how they should
+                influence motion planning. We present <b>Foresight</b>, a test-time framework in which a finetuned
+                VLM alternates between proposing image-space motion plans and critiquing them using the language
+                goal and visual context, with subsequent plans conditioned on prior critiques to enable iterative
+                motion refinement before execution. To align critiques and refinements with open-set behavior
+                preferences, we learn a reward model from human feedback and use it to post-train the VLM with
+                reinforcement learning in the plan-critique loop. In offline evaluations and 6 real-world
+                environments, Foresight improves average task success by <b>37%</b> and reduces interventions per
+                mission by <b>52%</b> relative to state-of-the-art test-time reasoning and foundation-model
+                baselines, while running in real-time on a Jetson AGX Orin.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Main Approach -->
+  <section class="section" id="approach">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column is-10">
+          <div class="column has-text-centered masthead">
+            <h2 class="title is-4">Test-time Reasoning via Iterative Plan-Critique Refinement</h2>
+          </div>
+          <div class="content">
+            Foresight formulates motion planning as a test-time reasoning loop. Conditioned on the image
+            observation and language instruction, a finetuned VLM proposes an image-space motion plan and then
+            critiques it with respect to the language goal and visual context. Subsequent plans are conditioned on
+            prior critiques, enabling the model to surface plan-dependent cues (e.g., ramps, signs, detours) and
+            iteratively refine its motion before execution. A lightweight policy converts the refined image-space
+            plan into executable trajectories.
+          </div>
+          <img src="./static/images/mainfigure.png"
+            style="border-radius: 10px; width: 100%; height: auto; margin-top: 0.0rem;" loading="lazy"
+            alt="Foresight architecture overview" />
+        </div>
+      </div>
+    </div>
+  </section>
+  <!--/ Main Approach -->
+
+  <!-- Training Recipe -->
+  <section class="section" id="training">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column is-10">
+          <div class="column has-text-centered masthead">
+            <h2 class="title is-4">Scalable Training Recipe: Supervised Finetuning + Preference RL</h2>
+          </div>
+
+          <div class="content">
+            To adapt pretrained VLMs for iterative refinement, we introduce a two-stage training recipe. We first
+            apply supervised finetuning to teach the VLM the structure of the plan-critique loop. Then, we learn a
+            reward model from human preference annotations to judge motion plan quality and use it to
+            post-train the VLM with reinforcement learning, aligning critiques and refinements with open-set
+            behavior preferences that are difficult to capture with hand-designed objectives alone.
+          </div>
+
+          <video autoplay muted playsinline controls loop preload="auto" style="width: 100%; border-radius: 10px;">
+            <source src="./static/videos/trainingrecipe.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+          </video>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!--/ Training Recipe -->
+
+  <!-- Baselines and Evaluation -->
+  <section class="section" id="evaluation">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column is-10">
+          <div class="column has-text-centered masthead">
+            <h2 class="title is-4" id="video">Offline and Real-World Evaluations</h2>
+          </div>
+
+          <div class="content">
+            We evaluate Foresight on a challenging offline benchmark with 25 unique urban environments and conduct
+            closed-loop experiments in 6 real-world
+            environments,
+            comparing against state-of-the-art navigation models, including test-time reasoning and robot foundation
+            models. With <b>just one additional refinement step</b>, Foresight <b>decreases the median planning error by
+              40%</b>,
+            <b>improves average task success rate by 37%</b>, and <b>reduces interventions per mission by 52%</b>
+            relative to state-of-the-art baselines, while running in real-time on a Jetson AGX Orin.
+          </div>
+
+          <div class="columns is-vcentered is-variable is-5">
+            <div class="column is-half-tablet" style="padding: 0.0rem;">
+              <figure class="image">
+                <img src="./static/images/hausdorff_boxplot_by_reflection.png"
+                  alt="Hausdorff distance boxplot by reflection" loading="lazy" style="border-radius: 10px;">
+              </figure>
+            </div>
+            <div class="column is-half-tablet" style="padding: 0.0rem;">
+              <figure class="image">
+                <img src="./static/images/robotexperiments_successrate.png"
+                  alt="Real-world robot experiments success rate" loading="lazy" style="border-radius: 10px;">
+              </figure>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!--/ Baselines and Evaluation -->
+
+  <!-- Deployment -->
+  <section class="section" id="deployment">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column is-10">
+          <div class="column has-text-centered masthead">
+            <h2 class="title is-4">Deployment: Long-Horizon Missions and Head-to-Head Comparisons</h2>
+          </div>
+
+          <div class="content">
+            We deploy Foresight on a real robot to follow sparse language instructions across long-horizon
+            navigation missions, and compare it head-to-head against competing methods in six environments that require
+            sign understanding, inferring structural clues, and navigating detours.
+          </div>
+
+          <!-- Long-horizon mission -->
+          <div class="content">
+            <p class="has-text-weight-semibold">Long-horizon navigation mission</p>
+            <video muted autoplay playsinline controls loop preload="metadata"
+              style="width: 100%; border-radius: 10px; margin-bottom: 1rem;">
+              <source src="./static/videos/long_horizon_mission.mp4" type="video/mp4">
+            </video>
+
+            <p class="has-text-weight-semibold">Head-to-head comparison: Environment 1</p>
+            <video muted autoplay playsinline controls loop preload="metadata"
+              style="width: 100%; border-radius: 10px; margin-bottom: 1rem;">
+              <source src="./static/videos/head_to_head_env1.mp4" type="video/mp4">
+            </video>
+
+            <p class="has-text-weight-semibold">Head-to-head comparison: Environment 2</p>
+            <video muted autoplay playsinline controls loop preload="metadata"
+              style="width: 100%; border-radius: 10px;">
+              <source src="./static/videos/head_to_head_env2.mp4" type="video/mp4">
+            </video>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+  <!--/ Deployment -->
+
+  <!-- Limitations -->
+  <section class="section" id="limitations">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column is-10">
+          <div class="column has-text-centered masthead">
+            <h2 class="title is-4">Limitations</h2>
+          </div>
+
+          <div class="columns is-vcentered is-variable is-6">
+            <!-- Left: Image illustrating limitations -->
+            <div class="column is-6">
+              <figure class="image">
+                <img src="./static/images/limitations.jpg" alt="Foresight limitations examples" loading="lazy"
+                  style="border-radius: 10px;">
+              </figure>
+            </div>
+
+            <!-- Right: Text describing limitations -->
+            <div class="column is-6">
+              <div class="content">
+                <p>
+                  While Foresight makes significant strides toward scalable mapless navigation, several challenges
+                  remain:
+                </p>
+                <ul>
+                  <li><strong>Credit assignment in multi-step refinement:</strong> Outcome-level supervision makes it
+                    hard to attribute gains to better critiques, critique-conditioned planning, or critique following.
+                    Process-level supervision could provide denser signal and reduce spurious correlations.</li>
+                  <li><strong>Memory and multi-view understanding:</strong> Navigation plans can degrade when
+                    relevant cues are sparse or absent from the local observation history. Retrieval-augmented memory
+                    and co-training on multi-view reasoning could improve cue grounding in these scenarios.</li>
+                  <li><strong>Static-environment focus:</strong> Our experiments primarily target static settings.
+                    Dynamic environments demand faster policies that reason over temporal relationships, which we leave
+                    for
+                    future work.</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+  <!--/ Limitations -->
+
+  <!-- Citation -->
+  <section class="section" id="citation">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column is-10">
+          <div class="column has-text-centered masthead">
+            <h2 class="title is-4">Citation</h2>
+          </div>
+
+          <div class="content has-text-justified">
+            If you find Foresight useful in your research, please consider citing our paper:
+
+            <div class="citation-box">
+              <button id="copyBibtexBtn" class="copy-btn" type="button" title="Copy BibTeX">
+                <i class="fas fa-copy"></i>
+              </button>
+
+              <pre id="bibtexBlock"><code>@article{foresight_anonymous,
+    title={Foresight: Iterative Reasoning About Clues that Matter for Navigation},
+    author={Anonymous Authors},
+    year={2026}
+  }</code></pre>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!--/ Citation -->
+
+</body>
+
+</html>
