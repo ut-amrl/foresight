@@ -150,6 +150,21 @@
             path before execution.
           </div>
 
+          <div class="scenario-selector" aria-label="Navigation scenario">
+            <label class="scenario-option">
+              <input type="radio" name="critiqueScenario" value="signs" checked>
+              <span>Signs</span>
+            </label>
+            <label class="scenario-option">
+              <input type="radio" name="critiqueScenario" value="detours">
+              <span>Detours</span>
+            </label>
+            <label class="scenario-option">
+              <input type="radio" name="critiqueScenario" value="structural">
+              <span>Structural</span>
+            </label>
+          </div>
+
           <div class="figma-critique-gallery" id="critiqueGallery">
             <div class="plan-figure" id="initialPlanFigure">
               <div class="plan-media">
@@ -169,7 +184,8 @@
                   <rect class="scene-sign" x="212" y="103" width="30" height="42" rx="2"></rect>
                   <circle class="target-outer" cx="205" cy="134" r="8"></circle>
                   <circle class="target-inner" cx="205" cy="134" r="4"></circle>
-                  <path class="plan-path initial-path" d="M 168 238 C 168 205, 158 184, 141 164 C 128 149, 126 137, 124 128"></path>
+                  <path id="initialPlanPath" class="plan-path initial-path"
+                    d="M 168 238 C 168 205, 158 184, 141 164 C 128 149, 126 137, 124 128"></path>
                 </svg>
               </div>
             </div>

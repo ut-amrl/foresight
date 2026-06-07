@@ -254,6 +254,48 @@ a:visited {
 }
 
 /* Figma-inspired critique selector */
+.scenario-selector {
+  display: inline-flex;
+  gap: 0.25rem;
+  margin-bottom: 0.9rem;
+  padding: 0.25rem;
+  border: 1px solid #d9ded9;
+  border-radius: 999px;
+  background: #ffffff;
+}
+
+.scenario-option {
+  cursor: pointer;
+  display: inline-flex;
+}
+
+.scenario-option input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.scenario-option span {
+  border-radius: 999px;
+  color: #3f4a45;
+  display: inline-flex;
+  font-size: 0.92rem;
+  font-weight: 700;
+  line-height: 1;
+  padding: 0.52rem 0.78rem;
+  transition: background 140ms ease, color 140ms ease;
+}
+
+.scenario-option input:focus-visible + span {
+  outline: 2px solid #ff6937;
+  outline-offset: 2px;
+}
+
+.scenario-option input:checked + span {
+  background: #d95d4c;
+  color: #ffffff;
+}
+
 .figma-critique-gallery {
   align-items: stretch;
   display: grid;
@@ -510,6 +552,18 @@ a:visited {
 }
 
 @media screen and (max-width: 640px) {
+  .scenario-selector {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    width: 100%;
+  }
+
+  .scenario-option,
+  .scenario-option span {
+    justify-content: center;
+    width: 100%;
+  }
+
   .reasoning-panel {
     grid-template-columns: 1fr;
     grid-template-rows: 42px repeat(3, minmax(62px, auto));
