@@ -64,6 +64,33 @@
     const btn = document.getElementById("copyBibtexBtn");
     if (btn) btn.addEventListener("click", copyBibtex);
 
+    // Safari blocks JS play() until the first user gesture on the page.
+    // Track which data-autoplay videos are currently in view so we can
+    // retry play() on them after the first interaction unlocks autoplay.
+    const inView = new Set();
+
+    const videoObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        const vid = entry.target;
+        if (entry.isIntersecting) {
+          inView.add(vid);
+          vid.play().catch(() => { });
+        } else {
+          inView.delete(vid);
+          if (vid.currentTime > 0) vid.pause();
+        }
+      });
+    }, { threshold: 0.25 });
+
+    document.querySelectorAll("video[data-autoplay]").forEach((v) => videoObserver.observe(v));
+
+    // On the first user gesture, retry play() for every in-view video.
+    function unlockAutoplay() {
+      inView.forEach((vid) => vid.play().catch(() => { }));
+    }
+    document.addEventListener("click", unlockAutoplay, { once: true });
+    document.addEventListener("touchstart", unlockAutoplay, { once: true });
+
     const switcher = document.getElementById("qualSwitcher");
     if (switcher) {
       const tabs = switcher.querySelectorAll(".qual-tab");
