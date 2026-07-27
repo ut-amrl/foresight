@@ -19,6 +19,8 @@
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script defer src="./static/js/index.js"></script>
+  <script defer src="./static/js/critique-gallery.js"></script>
 </head>
 
 <script>
@@ -134,7 +136,7 @@
                   rel="noopener">Arthur Zhang</a><sup>1</sup>,</span>
               <span class="byline-item"><a href="https://carl-qi.github.io/" class="author-link" target="_blank"
                   rel="noopener">Carl Qi</a><sup>1</sup>,</span>
-              <span class="byline-item"><a href="https://snowbawler.github.io" class="author-link" target="_blank"
+              <span class="byline-item"><a href="https://donnesu.github.io" class="author-link" target="_blank"
                   rel="noopener">Donne Su</a><sup>1</sup>,</span>
               <span class="byline-item"><a href="https://xymeng.github.io/xymeng/" class="author-link" target="_blank"
                   rel="noopener">Xiangyun Meng</a><sup>2</sup>,</span>
@@ -378,6 +380,76 @@
     </div>
   </section>
   <!--/ Deployment -->
+
+  <!-- Critique Gallery -->
+  <section class="section" id="critique-gallery">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column is-10">
+          <div class="column has-text-centered masthead">
+            <h2 class="title is-4">Plan-Critique Refinement</h2>
+          </div>
+
+          <div class="content">
+            We visualize representative test-time refinements across sign-following, detour-rerouting, and
+            structural-clue scenarios. In each example, Foresight critiques an initial image-space motion plan with
+            respect to the language goal and relevant visual cues, then conditions on the selected critique to produce
+            a refined plan before execution.
+          </div>
+
+          <div class="scenario-selector" aria-label="Navigation scenario">
+            <label class="scenario-option">
+              <input type="radio" name="critiqueScenario" value="signs" checked>
+              <span>Signs</span>
+            </label>
+            <label class="scenario-option">
+              <input type="radio" name="critiqueScenario" value="detours">
+              <span>Detours</span>
+            </label>
+            <label class="scenario-option">
+              <input type="radio" name="critiqueScenario" value="structural">
+              <span>Structural</span>
+            </label>
+          </div>
+
+          <div class="figma-critique-gallery" id="critiqueGallery">
+            <div class="plan-figure" id="initialPlanFigure">
+              <div class="plan-media">
+                <img class="plan-image" alt="Initial plan observation">
+                <div class="plan-pill">Plan &zeta;0</div>
+              </div>
+            </div>
+
+            <div class="reasoning-panel">
+              <div class="reasoning-header">
+                <span class="reasoning-help">select a critique</span>
+                <span class="reasoning-pill">Reasoning &zeta;0</span>
+              </div>
+
+              <button class="reasoning-card is-selected" type="button" data-critique="sign_arrow" aria-pressed="true">
+                &lt;fix&gt;steer left toward the building entrance with the orange awning&lt;/fix&gt;
+              </button>
+              <button class="reasoning-card" type="button" data-critique="sign_avoid" aria-pressed="false">
+                &lt;fix&gt;steer left away from the bushes to get to the entrance&lt;/fix&gt;
+              </button>
+              <button class="reasoning-card" type="button" data-critique="sign_align" aria-pressed="false">
+                &lt;fix&gt;steer right to look at the sign in the middle&lt;/fix&gt;
+              </button>
+            </div>
+
+            <div class="plan-figure refined-figure" id="refinedPlanFigure">
+              <div class="plan-media">
+                <img class="plan-image" alt="Refined plan observation">
+                <div class="plan-pill">Plan &zeta;1</div>
+                <div class="thinking-overlay" id="refinedThinking">Thinking...</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!--/ Critique Gallery -->
 
   <!-- Limitations -->
   <section class="section" id="limitations">

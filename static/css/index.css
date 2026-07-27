@@ -363,3 +363,240 @@ a:visited {
 .acceptance-pill i {
   font-size: 0.95rem;
 }
+
+/* Figma-inspired critique selector */
+.scenario-selector {
+  display: inline-flex;
+  gap: 0.25rem;
+  margin-bottom: 0.9rem;
+  padding: 0.25rem;
+  border: 1px solid #d9ded9;
+  border-radius: 999px;
+  background: #ffffff;
+}
+
+.scenario-option {
+  cursor: pointer;
+  display: inline-flex;
+}
+
+.scenario-option input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.scenario-option span {
+  border-radius: 999px;
+  color: #3f4a45;
+  display: inline-flex;
+  font-size: 0.92rem;
+  font-weight: 700;
+  line-height: 1;
+  padding: 0.52rem 0.78rem;
+  transition: background 140ms ease, color 140ms ease;
+}
+
+.scenario-option input:focus-visible + span {
+  outline: 2px solid #ff6937;
+  outline-offset: 2px;
+}
+
+.scenario-option input:checked + span {
+  background: #d95d4c;
+  color: #ffffff;
+}
+
+.figma-critique-gallery {
+  align-items: stretch;
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: minmax(0, 1.05fr) minmax(230px, 0.9fr) minmax(0, 1.05fr);
+  margin-top: 1rem;
+}
+
+.plan-figure {
+  align-self: stretch;
+  background: transparent;
+  display: grid;
+  grid-template-rows: calc(42px + 0.35rem) minmax(0, 1fr);
+  position: relative;
+}
+
+.plan-media {
+  align-self: center;
+  aspect-ratio: 7 / 4;
+  background: #dcecf5;
+  border: 1px solid #9ca3af;
+  border-radius: 8px;
+  grid-row: 2;
+  overflow: hidden;
+  position: relative;
+}
+
+.plan-image {
+  display: block;
+  height: 100%;
+  inset: 0;
+  object-fit: cover;
+  opacity: 0;
+  position: absolute;
+  width: 100%;
+  z-index: 0;
+}
+
+.plan-figure.has-image .plan-image {
+  opacity: 1;
+}
+
+.plan-pill,
+.reasoning-pill {
+  align-items: center;
+  border-radius: 999px;
+  color: #ffffff;
+  display: inline-flex;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.plan-pill {
+  background: #d95d4c;
+  font-size: 0.95rem;
+  padding: 0.55rem 0.75rem;
+  position: absolute;
+  right: 0.75rem;
+  top: 0.6rem;
+  z-index: 2;
+}
+
+.reasoning-panel {
+  align-self: stretch;
+  display: grid;
+  gap: 0.35rem;
+  grid-template-rows: 42px repeat(3, minmax(0, 1fr));
+  height: 100%;
+  min-height: 0;
+}
+
+.reasoning-header {
+  align-items: center;
+  display: block;
+  min-height: 42px;
+  position: relative;
+}
+
+.reasoning-pill {
+  background: #5dafe3;
+  font-size: 0.95rem;
+  padding: 0.55rem 0.8rem;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+.reasoning-help {
+  color: #9ca3af;
+  display: inline-block;
+  font-size: 0.76rem;
+  line-height: 42px;
+  max-width: calc(100% - 10.25rem);
+  white-space: nowrap;
+}
+
+.reasoning-card {
+  align-items: center;
+  background: #ffffff;
+  border: 1.5px solid #111827;
+  border-radius: 8px;
+  color: #111827;
+  cursor: pointer;
+  display: flex;
+  font-family: inherit;
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 1.25;
+  min-height: 0;
+  overflow: hidden;
+  padding: 0.45rem 0.65rem;
+  text-align: left;
+  width: 100%;
+}
+
+.reasoning-card:hover,
+.reasoning-card:focus-visible {
+  border-color: #5dafe3;
+  outline: none;
+}
+
+.reasoning-card.is-selected {
+  background: #eef8fd;
+  border-color: #5dafe3;
+  box-shadow: inset 0 0 0 1px #5dafe3;
+}
+
+.refined-figure {
+  background: transparent;
+}
+
+.refined-figure .plan-media {
+  background: #ddeaf2;
+}
+
+.thinking-overlay {
+  align-items: center;
+  background: rgba(221, 234, 242, 0.94);
+  color: #111827;
+  display: flex;
+  font-size: 0.98rem;
+  font-weight: 600;
+  inset: 0;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  position: absolute;
+  transition: opacity 140ms ease;
+}
+
+.thinking-overlay.is-visible {
+  opacity: 1;
+}
+
+@media screen and (max-width: 900px) {
+  .figma-critique-gallery {
+    grid-template-columns: 1fr;
+  }
+
+  .reasoning-panel {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-rows: 42px minmax(82px, auto);
+    height: auto;
+  }
+
+  .reasoning-header {
+    grid-column: 1 / -1;
+  }
+}
+
+@media screen and (max-width: 640px) {
+  .scenario-selector {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    width: 100%;
+  }
+
+  .scenario-option,
+  .scenario-option span {
+    justify-content: center;
+    width: 100%;
+  }
+
+  .reasoning-panel {
+    grid-template-columns: 1fr;
+    grid-template-rows: 42px repeat(3, minmax(62px, auto));
+  }
+
+  .plan-pill {
+    font-size: 0.85rem;
+    padding: 0.48rem 0.62rem;
+  }
+}
