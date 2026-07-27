@@ -314,6 +314,7 @@ a:visited {
 
 .plan-media {
   align-self: center;
+  aspect-ratio: 7 / 4;
   background: #dcecf5;
   border: 1px solid #9ca3af;
   border-radius: 8px;
@@ -337,13 +338,6 @@ a:visited {
   opacity: 1;
 }
 
-.street-scene {
-  display: block;
-  position: relative;
-  width: 100%;
-  z-index: 1;
-}
-
 .plan-pill,
 .reasoning-pill {
   align-items: center;
@@ -362,85 +356,6 @@ a:visited {
   right: 0.75rem;
   top: 0.6rem;
   z-index: 2;
-}
-
-.scene-sky {
-  fill: #dcecf5;
-}
-
-.plan-figure.has-image .scene-sky,
-.plan-figure.has-image .scene-trees,
-.plan-figure.has-image .scene-awning,
-.plan-figure.has-image .scene-posts,
-.plan-figure.has-image .scene-building,
-.plan-figure.has-image .scene-road,
-.plan-figure.has-image .scene-sidewalk,
-.plan-figure.has-image .scene-grass,
-.plan-figure.has-image .scene-curb,
-.plan-figure.has-image .scene-sign {
-  opacity: 0;
-}
-
-.scene-trees {
-  fill: #14321e;
-}
-
-.scene-awning {
-  fill: #c44937;
-}
-
-.scene-posts {
-  fill: #222831;
-}
-
-.scene-building {
-  fill: #e5d4c5;
-}
-
-.scene-road {
-  fill: #aab3bb;
-}
-
-.scene-sidewalk {
-  fill: #8b7d76;
-}
-
-.scene-grass {
-  fill: #274b28;
-}
-
-.scene-curb {
-  fill: #beb8aa;
-}
-
-.scene-sign {
-  fill: #c95e34;
-}
-
-.target-outer {
-  fill: none;
-  stroke: #ff3b8a;
-  stroke-width: 4;
-}
-
-.target-inner {
-  fill: #ffffff;
-}
-
-.plan-path {
-  fill: none;
-  stroke: #42d7d5;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-  stroke-width: 5;
-}
-
-.refined-path {
-  transition: opacity 180ms ease;
-}
-
-.refined-path.is-muted {
-  opacity: 0.18;
 }
 
 .reasoning-panel {

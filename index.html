@@ -170,23 +170,6 @@
               <div class="plan-media">
                 <img class="plan-image" alt="Initial plan observation">
                 <div class="plan-pill">Plan &zeta;0</div>
-                <svg class="street-scene" viewBox="0 0 360 260" role="img"
-                  aria-label="Initial plan before critique">
-                  <rect class="scene-sky" x="0" y="0" width="360" height="96" rx="8"></rect>
-                  <rect class="scene-trees" x="0" y="0" width="198" height="96"></rect>
-                  <rect class="scene-awning" x="0" y="0" width="72" height="34"></rect>
-                  <rect class="scene-posts" x="0" y="34" width="62" height="84"></rect>
-                  <rect class="scene-building" x="230" y="48" width="108" height="78"></rect>
-                  <rect class="scene-road" x="260" y="112" width="100" height="148"></rect>
-                  <rect class="scene-sidewalk" x="0" y="116" width="282" height="144"></rect>
-                  <rect class="scene-grass" x="0" y="96" width="124" height="58"></rect>
-                  <rect class="scene-curb" x="0" y="151" width="174" height="8"></rect>
-                  <rect class="scene-sign" x="212" y="103" width="30" height="42" rx="2"></rect>
-                  <circle class="target-outer" cx="205" cy="134" r="8"></circle>
-                  <circle class="target-inner" cx="205" cy="134" r="4"></circle>
-                  <path id="initialPlanPath" class="plan-path initial-path"
-                    d="M 168 238 C 168 205, 158 184, 141 164 C 128 149, 126 137, 124 128"></path>
-                </svg>
               </div>
             </div>
 
@@ -196,14 +179,14 @@
                 <span class="reasoning-pill">Reasoning &zeta;0</span>
               </div>
 
-              <button class="reasoning-card is-selected" type="button" data-critique="sidewalk" aria-pressed="true">
-                &lt;fix&gt; steer right toward the sidewalk path near the tree &lt;fix&gt;
+              <button class="reasoning-card is-selected" type="button" data-critique="sign_arrow" aria-pressed="true">
+                &lt;fix&gt;steer left toward the building entrance with the orange awning&lt;/fix&gt;
               </button>
-              <button class="reasoning-card" type="button" data-critique="curb" aria-pressed="false">
-                &lt;fix&gt; avoid drifting left toward the curb; keep the plan on the sidewalk &lt;fix&gt;
+              <button class="reasoning-card" type="button" data-critique="sign_avoid" aria-pressed="false">
+                &lt;fix&gt;steer left away from the bushes to get to the entrance&lt;/fix&gt;
               </button>
-              <button class="reasoning-card" type="button" data-critique="corridor" aria-pressed="false">
-                &lt;fix&gt; continue straight, then align with the open walkway corridor &lt;fix&gt;
+              <button class="reasoning-card" type="button" data-critique="sign_align" aria-pressed="false">
+                &lt;fix&gt;steer right to look at the sign in the middle&lt;/fix&gt;
               </button>
             </div>
 
@@ -211,23 +194,6 @@
               <div class="plan-media">
                 <img class="plan-image" alt="Refined plan observation">
                 <div class="plan-pill">Plan &zeta;1</div>
-                <svg class="street-scene" viewBox="0 0 360 260" role="img"
-                  aria-label="Refined plan after selected critique">
-                  <rect class="scene-sky" x="0" y="0" width="360" height="96" rx="8"></rect>
-                  <rect class="scene-trees" x="0" y="0" width="198" height="96"></rect>
-                  <rect class="scene-awning" x="0" y="0" width="72" height="34"></rect>
-                  <rect class="scene-posts" x="0" y="34" width="62" height="84"></rect>
-                  <rect class="scene-building" x="230" y="48" width="108" height="78"></rect>
-                  <rect class="scene-road" x="260" y="112" width="100" height="148"></rect>
-                  <rect class="scene-sidewalk" x="0" y="116" width="282" height="144"></rect>
-                  <rect class="scene-grass" x="0" y="96" width="124" height="58"></rect>
-                  <rect class="scene-curb" x="0" y="151" width="174" height="8"></rect>
-                  <rect class="scene-sign" x="212" y="103" width="30" height="42" rx="2"></rect>
-                  <circle class="target-outer" cx="205" cy="134" r="8"></circle>
-                  <circle class="target-inner" cx="205" cy="134" r="4"></circle>
-                  <path id="refinedPlanPath" class="plan-path refined-path"
-                    d="M 170 238 C 170 206, 170 179, 170 150 C 170 132, 184 122, 206 120"></path>
-                </svg>
                 <div class="thinking-overlay" id="refinedThinking">Thinking...</div>
               </div>
             </div>
