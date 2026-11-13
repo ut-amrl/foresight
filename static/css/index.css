@@ -100,6 +100,25 @@ video {
   margin-bottom: 12px;
 }
 
+.venue.award {
+  display: inline-block;
+  padding: 6px 14px;
+  border: 1px solid var(--accent-tint);
+  border-radius: 999px;
+  background: var(--accent-wash);
+  color: var(--accent-soft);
+  margin: 16px 0 4px;
+}
+
+.venue.award .ico {
+  margin-right: 4px;
+}
+
+.venue.award .sep {
+  margin: 0 .7em;
+  color: var(--accent-tint);
+}
+
 .titleblock h1 {
   font-family: "Source Serif 4", Georgia, serif;
   font-weight: 600;
