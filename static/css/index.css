@@ -114,6 +114,10 @@ video {
   margin-right: 4px;
 }
 
+.venue.award .keepcase {
+  text-transform: none;
+}
+
 .venue.award .sep {
   margin: 0 .7em;
   color: var(--accent-tint);
